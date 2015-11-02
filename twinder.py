@@ -5,13 +5,10 @@ import os
 from twitter import *
 from secret import CONSUMER_KEY, CONSUMER_SECRET
 
+MY_TWITTER_CREDENTIALS = os.path.expanduser('~/.twinder_credentials')
+if not os.path.exists(MY_TWITTER_CREDENTIALS):
+    oauth_dance("My App Name", CONSUMER_KEY, CONSUMER_SECRET, MY_TWITTER_CREDENTIALS)
 
-MY_TWITTER_CREDS = os.path.expanduser('~/.twinder_credentials')
-if not os.path.exists(MY_TWITTER_CREDS):
-    oauth_dance("My App Name", CONSUMER_KEY, CONSUMER_SECRET,
-                MY_TWITTER_CREDS)
+oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDENTIALS)
 
-oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDS)
-
-twitter = Twitter(auth=OAuth(
-    oauth_token, oauth_secret, CONSUMER_KEY, CONSUMER_SECRET))
+twitter = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_KEY, CONSUMER_SECRET))

@@ -3,9 +3,8 @@
 
 import os
 from twitter import *
+from secret import CONSUMER_KEY, CONSUMER_SECRET
 
-CONSUMER_KEY = "XUX6xQN0IK0V5kUNXEtllvKpb"
-CONSUMER_SECRET = ""
 
 MY_TWITTER_CREDS = os.path.expanduser('~/.twinder_credentials')
 if not os.path.exists(MY_TWITTER_CREDS):

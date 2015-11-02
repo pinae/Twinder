@@ -58,3 +58,6 @@ target/
 
 # PyCharm
 .idea/
+
+# Settings which should be kept secret
+secret.py

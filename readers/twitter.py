@@ -4,8 +4,7 @@
 from readers.basic import BasicReader
 import os
 from twitter import *
-from secret import CONSUMER_KEY, CONSUMER_SECRET
-from settings import TWINDER_DIR
+from settings import TWINDER_DIR, TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET
 
 MY_TWITTER_CREDENTIALS = os.path.expanduser(os.path.join(TWINDER_DIR, 'twitter_credentials'))
 
@@ -13,9 +12,9 @@ MY_TWITTER_CREDENTIALS = os.path.expanduser(os.path.join(TWINDER_DIR, 'twitter_c
 class TwitterReader(BasicReader):
     def __init__(self):
         if not os.path.exists(MY_TWITTER_CREDENTIALS):
-            oauth_dance("Twinder Tweetsorter", CONSUMER_KEY, CONSUMER_SECRET, MY_TWITTER_CREDENTIALS)
+            oauth_dance("Twinder Tweetsorter", TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, MY_TWITTER_CREDENTIALS)
         oauth_token, oauth_secret = read_token_file(MY_TWITTER_CREDENTIALS)
-        self.twitter = Twitter(auth=OAuth(oauth_token, oauth_secret, CONSUMER_KEY, CONSUMER_SECRET))
+        self.twitter = Twitter(auth=OAuth(oauth_token, oauth_secret, TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET))
         self.last_known_tweet = None
 
     def read(self):

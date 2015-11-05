@@ -5,8 +5,9 @@ from readers.basic import BasicReader
 import os
 from twitter import *
 from secret import CONSUMER_KEY, CONSUMER_SECRET
+from settings import TWINDER_DIR
 
-MY_TWITTER_CREDENTIALS = os.path.expanduser('~/.twinder/twitter_credentials')
+MY_TWITTER_CREDENTIALS = os.path.expanduser(os.path.join(TWINDER_DIR, 'twitter_credentials'))
 
 
 class TwitterReader(BasicReader):
